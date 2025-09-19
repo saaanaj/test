@@ -275,3 +275,108 @@ viewalldata.addEventListener("click" , () => {
   }
   view.textContent = JSON.stringify(JSON.parse(alldata), null, 4);
 })
+
+
+//indina watch
+
+const indianwatch = document.querySelector("#indianwatch");
+
+function showtime(){
+let now = new Date();
+let hrs = now.getHours().toString().padStart(2, "0");
+let mnt = now.getMinutes().toString().padStart(2 ,"0");
+let scd = now.getSeconds().toString().padStart(2, "0");
+indianwatch.innerHTML = `${hrs}:${mnt}:${scd}`
+console.log(`${hrs}:${mnt}:${scd}`)
+}
+showtime()
+setInterval(showtime , 0);
+
+
+
+
+const quiz = document.querySelector("#quiz");
+
+const quizlist = [
+  {
+    "question": "Python me timeit module ka use kya hai?",
+    "options": [
+      "1. Code ka execution time measure karne ke liye",
+      "2. Real time clock",
+      "3. Alarm set karne ke liye",
+      "4. Thread sleep karne ke liye"
+    ],
+    "answer": "1"
+  },
+  {
+    "question": "Python me __all__ variable module me kis liye hota hai?",
+    "options": [
+      "1. Public API define karne ke liye",
+      "2. Memory allocate karne ke liye",
+      "3. Error handle karne ke liye",
+      "4. Logging"
+    ],
+    "answer": "1"
+  },
+  {
+    "question": "Python me del statement kis liye hota hai?",
+    "options": [
+      "1. Object delete karne ke liye",
+      "2. Memory increase karne ke liye",
+      "3. Error raise karne ke liye",
+      "4. Loop break karne ke liye"
+    ],
+    "answer": "1"
+  },
+  {
+    "question": "Python me sys.getsizeof() function kya return karta hai?",
+    "options": [
+      "1. Object ka size (bytes me)",
+      "2. List length",
+      "3. File size",
+      "4. String length"
+    ],
+    "answer": "1"
+  },
+  {
+    "question": "Python me logging module ka default level kya hai?",
+    "options": ["1. WARNING", "2. ERROR", "3. DEBUG", "4. INFO"],
+    "answer": "1"
+  }
+];
+
+let current = 0;
+let score = 0;
+
+function loadQuestion() {
+  if (current < quizlist.length) {
+    let q = quizlist[current];
+    quiz.innerHTML = `
+      <h2>${q.question}</h2>
+      <div>
+        ${q.options.map((opt, i) => 
+          `<button onclick="checkAnswer('${i+1}')">${opt}</button>`
+        ).join("")}
+      </div>
+    `;
+  } else {
+    quiz.innerHTML = `
+      <h2>🎉 Quiz Finished!</h2>
+      <p>Your score: ${score} / ${quizlist.length}</p>
+    `;
+  }
+}
+
+function checkAnswer(answer) {
+  if (answer === quizlist[current].answer) {
+    alert("✅ Correct!");
+    score++;
+  } else {
+    alert("❌ Wrong! Correct answer is " + quizlist[current].answer);
+  }
+  current++;
+  loadQuestion();
+}
+
+// start quiz
+loadQuestion();
