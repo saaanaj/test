@@ -345,38 +345,42 @@ const quizlist = [
   }
 ];
 
-let current = 0;
-let score = 0;
 
-function loadQuestion() {
-  if (current < quizlist.length) {
-    let q = quizlist[current];
-    quiz.innerHTML = `
-      <h2>${q.question}</h2>
-      <div>
-        ${q.options.map((opt, i) => 
-          `<button onclick="checkAnswer('${i+1}')">${opt}</button>`
-        ).join("")}
-      </div>
-    `;
-  } else {
-    quiz.innerHTML = `
-      <h2>🎉 Quiz Finished!</h2>
-      <p>Your score: ${score} / ${quizlist.length}</p>
-    `;
-  }
-}
+let quiz1 = document.querySelector("#quiz")
 
-function checkAnswer(answer) {
-  if (answer === quizlist[current].answer) {
-    alert("✅ Correct!");
-    score++;
-  } else {
-    alert("❌ Wrong! Correct answer is " + quizlist[current].answer);
-  }
-  current++;
-  loadQuestion();
-}
+ 
+quiz1.innerHTML = quizlist[0].question
 
-// start quiz
-loadQuestion();
+
+
+let reactforansw = document.querySelector("#reactforansw")
+
+let answ = quizlist[0].options[0]
+let ans1 = quizlist[0].options[1]
+let ans2 = quizlist[0].options[2]
+let ans3 = quizlist[0].options[3]
+reactforansw.innerHTML = `
+  <label><input type="radio" name="answer" value="1">${answ} </label><br>
+  <label><input type="radio" name="answer" value="2"> ${ans1}</label><br>
+  <label><input type="radio" name="answer" value="3"> ${ans2}</label><br>
+  <label><input type="radio" name="answer" value="4"> ${ans3}</label><br>
+`;
+
+const submitbtn = document.querySelector("#submitwa")
+const qusrest = document.querySelector("#qusrest")
+let answert = quizlist[0].answer
+
+submitbtn.addEventListener("click" , () => {
+    let selected = document.querySelector("input[name='answer']:checked");
+
+    if(!selected) {
+      qusrest.innerHTML = "please select the  first"
+      return;
+    }
+    if(selected.value === answert){
+      qusrest.innerHTML = `consgrulation bhai tu jit gya ${answert} correct he`
+    }
+    else{
+      qusrest.innerHTML = `bhen ke lode sahee answer de madarchod chal tu gandu he correct answer he ${answert}`
+    }
+})
