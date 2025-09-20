@@ -348,17 +348,22 @@ const quizlist = [
 
 let quiz1 = document.querySelector("#quiz")
 
- 
-quiz1.innerHTML = quizlist[0].question
 
+let kr = Math.random();
+let ms = kr * quizlist.length;
+let fnl = Math.floor(ms);
+
+let ths = quizlist[fnl]; 
+
+quiz1.innerHTML = ths.question
 
 
 let reactforansw = document.querySelector("#reactforansw")
 
-let answ = quizlist[0].options[0]
-let ans1 = quizlist[0].options[1]
-let ans2 = quizlist[0].options[2]
-let ans3 = quizlist[0].options[3]
+let answ = ths.options[0]
+let ans1 = ths.options[1]
+let ans2 = ths.options[2]
+let ans3 = ths.options[3]
 reactforansw.innerHTML = `
   <label><input type="radio" name="answer" value="1">${answ} </label><br>
   <label><input type="radio" name="answer" value="2"> ${ans1}</label><br>

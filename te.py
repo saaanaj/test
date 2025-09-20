@@ -94,7 +94,7 @@
 #     print(yourstime)
 #     time.sleep(1.9 )
 
-
+import random
 
 #quiz game 
 
@@ -192,19 +192,24 @@ quiz = [
     }
 ]
 
+import random
 
-
-print("\n--- welcome to quiz game")
+print("\n--- Welcome to Quiz Game ---")
 score = 0
 
-for q in quiz:
-    print (q["question"])
-    for opt in q["options"]:
-        print(opt)
-    ans = input("enter your choice (1-4):")
-    if ans == q["answer"]:
-        print ("correct\n")
-        score =+ 1
-    else:
-        print("wrong answer", "correct answer is" , q["answer"] , "\n")
-print(f"your final score : {score}/len(quiz)")
+rnd = random.randint(0, len(quiz) - 1)
+q = quiz[rnd]
+
+# print(q)
+print(q["question"])
+for opt in q["options"]:
+    print(opt)
+
+ans = input("Enter your choice (1-4): ")
+if ans == q["answer"]:
+    print("✅ Correct!\n")
+    score += 1
+else:
+    print("❌ Wrong Answer. Correct is:", q["answer"], "\n")
+
+print(f"Your final score: {score}/1")
