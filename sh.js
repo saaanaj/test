@@ -408,3 +408,42 @@ else{
 }
 neha.value = ""
 })
+
+
+const imgpart = document.querySelector("#imgpart img")
+
+const rightbtn = document.querySelector("#rightbtn button")
+
+const leftbtn = document.querySelector("#leftbtn button")
+
+const images = [
+      "https://picsum.photos/id/1015/500/300",
+      "https://picsum.photos/id/1016/500/300",
+      "https://picsum.photos/id/1018/500/300",
+      "https://picsum.photos/id/1020/500/300"
+];
+
+imgpart.src = images[0]
+let index = 0;
+
+function next(){
+   index++
+  if(index >= images.length){
+    index = 0;
+  }
+  imgpart.src = images[index];
+}
+function left() {
+  index--;
+  if(index < 0 ) {
+    index = images.length -1;
+  }
+  imgpart.src = images[index];
+}
+
+rightbtn.addEventListener("click" , () => {
+ next()
+})
+leftbtn.addEventListener("click" , ()  => {
+left()
+})
