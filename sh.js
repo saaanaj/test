@@ -389,3 +389,22 @@ submitbtn.addEventListener("click" , () => {
       qusrest.innerHTML = `bhen ke lode sahee answer de madarchod chal tu gandu he correct answer he ${answert}`
     }
 })
+
+const  voting = document.querySelector("#voting")
+const vtnbtn = document.querySelector("#vtnbtn button")
+const resulet = document.querySelector("#resulet")
+
+voting.innerHTML = `<input type="number" placeholder="Enter your age number" value="">`;
+
+
+vtnbtn.addEventListener("click" , () => {
+const neha = voting.querySelector("input")
+const valueofage = neha.value;
+if(valueofage >= "18") {
+  resulet.innerHTML = `madarchod tu ${valueofage} ka ho gaye vote de dega lekin gand mar lii jayegi teri`
+}
+else{
+  resulet.innerHTML = `bacha he tu madarchod  ${valueofage} ka hua to mere jhath ke barabar he`
+}
+neha.value = ""
+})
